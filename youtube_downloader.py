@@ -44,6 +44,8 @@ def download_video(url):
         error_message = result_download.stderr
         if "HTTP Error 404: Not Found" in error_message:
             st.error("El video no se pudo encontrar. Puede haber sido eliminado o es privado.")
+        elif "HTTP Error 403: Forbidden" in error_message:
+            st.error("Acceso denegado al video. Puede requerir autenticación o estar restringido geográficamente.")
         else:
             st.error(f"Error durante la descarga: {error_message}")
         return None
